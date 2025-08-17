@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LinearProgrammingSolver
 {
-    internal class FileHandler
+    public class FileHandler
     {
     }
 }
