@@ -29,7 +29,7 @@ namespace LinearProgrammingSolver
         public void Set(int row, int col, double value) { _Array[row, col] = value; }
         public double Get(int row, int col) { return _Array[row, col]; }
 
-        public void WriteTable(TextWriter txtW)
+        public void FillingTableValues(TextWriter txtW)
         {
             txtW.Write("\t");
 
