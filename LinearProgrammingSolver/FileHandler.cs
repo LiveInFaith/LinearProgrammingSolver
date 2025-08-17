@@ -18,7 +18,12 @@ namespace LinearProgrammingSolver
 
         public static void AdditionalTable(string path, Table table, string title)
         {
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                sw.WriteLine($"============= {title} =============");
+                table.FillingTableValues(sw);
 
+            }
         }
 
         public static string[] ReadAllLines(string path)
