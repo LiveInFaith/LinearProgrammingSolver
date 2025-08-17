@@ -10,7 +10,10 @@ namespace LinearProgrammingSolver
     {
         public static void WriteTable(string path, Table table)
         {
-
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                table.FillingTableValues(sw);
+            }
         }
 
         public static void AdditionalTable(string path, Table table, string title)
