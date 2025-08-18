@@ -68,10 +68,6 @@ namespace LinearProgrammingSolver
             }
 
             File.WriteAllLines(FilePath.Replace(".txt", "_output.txt"), lines);
-
         }
-        
-
-
     }
 }
