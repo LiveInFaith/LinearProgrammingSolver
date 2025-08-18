@@ -15,6 +15,25 @@ namespace LinearProgrammingSolver
             FilePath = FP;
         }
 
+        public Table GetTable()
+        {
+            Table table = new Table();
+
+            string[] lines = File.ReadAllLines(FilePath);
+
+            string objLine = lines[0];
+
+            List<string> constraintLines = new List<string>();
+
+            for (int i = 1; i < lines.Length; i++)
+            {
+                constraintLines.Add(lines[i]);
+            }
+
+            table.BuildTable(objLine, constraintLines);
+
+            return table;
+        }
 
 
          
