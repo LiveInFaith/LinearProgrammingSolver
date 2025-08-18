@@ -22,7 +22,7 @@ namespace LinearProgrammingSolver
             ObjectiveValues = new List<double>();
             ConstraintValues = new List<List<double>>();
             RHSValues = new List<double>();
-            MinOrMaxQuestion = " ";
+            MinOrMaxQuestion = "";
         }
 
         public void BuildTable(string objLine, List<string> constLine)
@@ -36,7 +36,7 @@ namespace LinearProgrammingSolver
         {
             string[] obj = line.Split(" ");
 
-            MinOrMaxQuestion += obj[0].ToLower();
+            MinOrMaxQuestion = obj[0].ToLower();
 
             for (int i = 1; i < obj.Length; i++)
             {
@@ -61,7 +61,7 @@ namespace LinearProgrammingSolver
 
                 int i = 0;
 
-                while (i < constraint.Length && !constraint[i].Contains("<=") && constraint[i].Contains(">=") && constraint[i].Contains("="))
+                while (i < constraint.Length && !constraint[i].Contains("<=") && !constraint[i].Contains(">=") && !constraint[i].Contains("="))
                 {
                     if(constraint[i].StartsWith("+") || constraint[i].StartsWith("-") )
                     {
@@ -76,9 +76,24 @@ namespace LinearProgrammingSolver
                 }
                 ConstraintValues.Add(values);
 
-                string rhsValue = constraint[constraint.Length - 1];
-
-                RHSValues.Add(double.Parse(rhsValue));
+                for (int j = 0; j < constraint.Length; j++)
+                {
+                    if (constraint[j].Contains("<=") || constraint[j].Contains(">=") || constraint[j].Contains("="))
+                    {
+                        
+                        if (j + 1 < constraint.Length)
+                        {
+                            RHSValues.Add(double.Parse(constraint[j + 1]));
+                        }
+                        
+                        else if (constraint[j].Length > 2)
+                        {
+                            string rhsPart = constraint[j].Substring(2); // Remove <= or >=
+                          RHSValues.Add(double.Parse(rhsPart));
+                        }
+                        break;
+                    }
+                }
             }
             
         }
